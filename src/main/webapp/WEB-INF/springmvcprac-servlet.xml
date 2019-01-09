@@ -36,6 +36,8 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.ashijaingarg.prac.User</value>
+				<value>com.ashijaingarg.prac.model.SubCategory</value>
+				<value>com.ashijaingarg.prac.model.Category</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -43,7 +45,7 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
 				</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
@@ -54,6 +56,19 @@
 	</bean>
 	<bean id="userService" class="com.ashijaingarg.prac.UserService">
 		<property name="userDaoImpl" ref="userDaoImpl"></property>
+	</bean>	
+	<bean id="categoryDaoImpl" class="com.ashijaingarg.prac.dao.CategoryDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	<bean id="categoryService" class="com.ashijaingarg.prac.service.CategoryService">
+		<property name="categoryDaoImpl" ref="categoryDaoImpl"></property>
+	</bean>
+	<bean id="subCategoryDaoImpl" class="com.ashijaingarg.prac.dao.SubCategoryDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	<bean id="subCategoryService" class="com.ashijaingarg.prac.service.SubCategoryService">
+		<property name="subCategoryDaoImpl" ref="subCategoryDaoImpl"></property>
+		<property name="categoryDaoImpl" ref="categoryDaoImpl"></property>
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">

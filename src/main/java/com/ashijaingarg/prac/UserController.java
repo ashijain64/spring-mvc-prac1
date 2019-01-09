@@ -13,11 +13,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-//	@Autowired(required=true)
-//	@Qualifier(value="userDaoImpl")
-	public void setUserDaoImpl(UserDaoImpl userDaoImpl) {
-		this.userService = userService;
-	}
 	
 	@RequestMapping(value = "user", method = RequestMethod.GET)
 	public String showUser(ModelMap model) {
