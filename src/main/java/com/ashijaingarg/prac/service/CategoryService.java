@@ -1,6 +1,8 @@
 package com.ashijaingarg.prac.service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -26,6 +28,15 @@ public class CategoryService {
 	@Transactional
 	public List<Category> getAllCategories() {
 		return this.categoryDaoImpl.getAllCategories();
+	}
+	
+	@Transactional
+	public List<Category> getAllCategoriesWithAllProducts() {
+		List<Category> allCategories = categoryDaoImpl.getAllCategories();
+		allCategories.stream().map(c -> c.getSubCategories()).flatMap(Set::stream)
+								.map(s->s.getProducts()).flatMap(Set::stream)
+								.collect(Collectors.toList());
+		return allCategories;
 	}
 	
 

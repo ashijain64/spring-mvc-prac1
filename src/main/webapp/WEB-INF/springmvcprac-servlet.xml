@@ -38,6 +38,7 @@
 				<value>com.ashijaingarg.prac.User</value>
 				<value>com.ashijaingarg.prac.model.SubCategory</value>
 				<value>com.ashijaingarg.prac.model.Category</value>
+				<value>com.ashijaingarg.prac.model.Product</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -69,6 +70,13 @@
 	<bean id="subCategoryService" class="com.ashijaingarg.prac.service.SubCategoryService">
 		<property name="subCategoryDaoImpl" ref="subCategoryDaoImpl"></property>
 		<property name="categoryDaoImpl" ref="categoryDaoImpl"></property>
+	</bean>
+	<bean id="productDaoImpl" class="com.ashijaingarg.prac.dao.ProductDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	<bean id="productService" class="com.ashijaingarg.prac.service.ProductService">
+		<property name="subCategoryDaoImpl" ref="subCategoryDaoImpl"></property>
+		<property name="productDaoImpl" ref="productDaoImpl"></property>
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
