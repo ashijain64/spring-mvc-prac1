@@ -18,6 +18,8 @@
 				<form:input path="description" type="text" required="required"></form:input>
 				Enter ImageUrl : 
 				<form:input path="imageUrl" type="text" required="required"></form:input>
+				Enter Price : 
+				<form:input path="price" type="text" required="required"></form:input>
 				
 				Select SubCategory :
 				<form:select path="subCategoryId">

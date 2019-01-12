@@ -7,7 +7,7 @@
 <body>
 	<div>
 		<table>
-			<caption>Home</caption>
+			<caption>Category SubCategory</caption>
 			<thead>
 				<tr>
 					<th>Category</th>
@@ -22,6 +22,23 @@
 								var="subCategory">
 							${subCategory.subCategoryName} <br>						
 						</c:forEach></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<table>
+			<caption>Product</caption>
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${products}" var="product">
+					<tr>
+						<td><a href = "/product/${product.id}" >${product.productName}</a></td>
+						<td>${product.price}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

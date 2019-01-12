@@ -34,4 +34,9 @@ private SessionFactory sessionFactory;
 		return (SubCategory) session.get(SubCategory.class, id);
 	}
 
+	public Product getProductById(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return (Product) session.get(Product.class, id);
+	}
+
 }

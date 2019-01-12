@@ -26,6 +26,17 @@ public class Product {
 	@Column
 	private String imageUrl;
 	
+	@Column
+	private int price;
+	
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	@ManyToOne()
 	@JoinColumn(name = "subCategory_id")
 	private SubCategory subCategory;

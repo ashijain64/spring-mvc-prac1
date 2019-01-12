@@ -49,6 +49,11 @@ public class ProductService {
 		return this.productDaoImpl.getAllProducts();
 	}
 	
+	@Transactional
+	public Product getProductById(int id) {
+		return this.productDaoImpl.getProductById(id);
+	}
+	
 	
 	@Transactional
 	public List<Product> getProductsForSubCategory(int subCategoryId) {

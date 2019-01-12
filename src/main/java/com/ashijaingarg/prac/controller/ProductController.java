@@ -1,11 +1,13 @@
 package com.ashijaingarg.prac.controller;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,6 +17,8 @@ import com.ashijaingarg.prac.service.ProductService;
 
 @Controller
 public class ProductController {
+	
+	Logger log = Logger.getLogger(ProductController.class.getName());
 	
 	@Autowired
 	private ProductService productService;
@@ -36,6 +40,16 @@ public class ProductController {
 	    productService.addProduct(product);
 		model.put("product",new Product());
 		return "product";
+	}
+	
+	@RequestMapping(value = "/product/{id}",  method = RequestMethod.GET)
+	public String showProductDetails( @PathVariable("id") int id, ModelMap model) {
+		log.info("Product id in request : " + id);
+		Product productById = productService.getProductById(id);
+		log.info("Product from db : " + productById);
+		model.put("product", productById);
+		return "product-home";
+		
 	}
 	
 
