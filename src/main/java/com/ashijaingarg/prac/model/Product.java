@@ -1,12 +1,16 @@
 package com.ashijaingarg.prac.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -29,6 +33,21 @@ public class Product {
 	@Column
 	private int price;
 	
+	
+	
+	public Product(String productName, String description, String imageUrl, int price, SubCategory subCategory) {
+		super();
+		this.productName = productName;
+		this.description = description;
+		this.imageUrl = imageUrl;
+		this.price = price;
+		this.subCategory = subCategory;
+	}
+	
+	public Product() {
+		
+	}
+
 	public int getPrice() {
 		return price;
 	}
@@ -43,6 +62,18 @@ public class Product {
 	
 	@Transient
 	private String subCategoryId;
+	
+	//not sure
+	@OneToMany(mappedBy = "product" , fetch=FetchType.LAZY)
+	private Set<CartItem> cartItems;
+
+	public Set<CartItem> getCartItems() {
+		return cartItems;
+	}
+
+	public void setCartItems(Set<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
 
 	public int getId() {
 		return id;

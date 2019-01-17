@@ -23,9 +23,16 @@ public class Category {
 	@Column
 	private int sequence;
 	
+	public Category() {
+		super();
+	}
 	@OneToMany(mappedBy = "category" , fetch=FetchType.EAGER)
 	private Set<SubCategory> subCategories;
 	
+	public Category(String string, int i) {
+		this.categoryName = string;
+		this.sequence = i;
+	}
 	public int getId() {
 		return id;
 	}

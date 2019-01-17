@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello , added a product to cart !
+Hello , product has been added to cart! 
+<a href = "/display-user-cart/${userId}" >View Cart!</a>
 </body>
 </html>

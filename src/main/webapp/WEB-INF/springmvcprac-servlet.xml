@@ -39,6 +39,9 @@
 				<value>com.ashijaingarg.prac.model.SubCategory</value>
 				<value>com.ashijaingarg.prac.model.Category</value>
 				<value>com.ashijaingarg.prac.model.Product</value>
+				<value>com.ashijaingarg.prac.model.AppUser</value>
+				<value>com.ashijaingarg.prac.model.Cart</value>
+				<value>com.ashijaingarg.prac.model.CartItem</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -77,6 +80,20 @@
 	<bean id="productService" class="com.ashijaingarg.prac.service.ProductService">
 		<property name="subCategoryDaoImpl" ref="subCategoryDaoImpl"></property>
 		<property name="productDaoImpl" ref="productDaoImpl"></property>
+	</bean>
+	<bean id="appUserService" class="com.ashijaingarg.prac.service.AppUserService">
+		<property name="appUserDaoImpl" ref="appUserDaoImpl"></property>
+	</bean>
+	<bean id="appUserDaoImpl" class="com.ashijaingarg.prac.dao.AppUserDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	<bean id="cartService" class="com.ashijaingarg.prac.service.CartService">
+		<property name="cartDaoImpl" ref="cartDaoImpl"></property>
+		<property name="appUserDaoImpl" ref="appUserDaoImpl"></property>
+		<property name="productDaoImpl" ref="productDaoImpl"></property>
+	</bean>
+	<bean id="cartDaoImpl" class="com.ashijaingarg.prac.dao.CartDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
